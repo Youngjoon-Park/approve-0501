@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Admin API 테스트</title>
+</head>
+<body>
+  <h1>관리자 인증 확인</h1>
+  <button onclick="fetchCheck()">불러오기</button>
+  <pre id="result"></pre>
+
+  <script>
+    const token = "Bearer eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJhZG1pbkBleGFtcGxlLmNvbSIsInJvbGUiOiJST0xFX0FETUlOIiwiaWF0IjoxNzQ1NTQ2NzkzLCJleHAiOjE3NDU1NTAzOTN9.F__4mzovehnhrc5z3kwwqmVosP9WZMphYcGoCS73UHs";
+
+    function fetchCheck() {
+      fetch("http://localhost:8081/api/admin/check", {
+        method: "GET",
+        headers: {
+          "Authorization": token
+        }
+      })
+      .then(res => res.text())
+      .then(data => {
+        document.getElementById("result").textContent = data;
+      })
+      .catch(err => {
+        document.getElementById("result").textContent = "❌ 에러: " + err;
+      });
+    }
+  </script>
+</body>
+</html>

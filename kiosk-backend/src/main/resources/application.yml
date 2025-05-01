@@ -1,0 +1,35 @@
+# spring:
+#   application:
+#     name: admin-auth-api
+
+#   datasource:
+#     url: jdbc:mysql://localhost:3306/admindb
+#     driver-class-name: com.mysql.cj.jdbc.Driver
+#     username: admin_user
+#     password: admin1234
+
+#   jpa:
+#     hibernate:
+#       ddl-auto: update # ✅ 엔티티 기반 테이블 자동 생성
+#     show-sql: true # ✅ 콘솔에 SQL 로그 출력
+#     properties:
+#       hibernate:
+#         format_sql: true # ✅ SQL을 보기 좋게 출력
+#     defer-datasource-initialization: true
+
+#   servlet:
+#     multipart:
+#       enabled: true
+#       max-file-size: 10MB
+#       max-request-size: 10MB
+
+# server:
+#   address: 0.0.0.0
+#   port: 8081
+
+# kakao:
+#   admin-key: e58ec7c8605486c3e1c7dc7c46962828
+#   cid: TC0ONETIME
+#   approve-url: https://kiosktest.shop/payment/success
+#   cancel-url: https://kiosktest.shop/payment/cancel
+#   fail-url: https://kiosktest.shop/payment/fail

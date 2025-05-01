@@ -1,0 +1,71 @@
+plugins {
+	id 'java'
+	id 'org.springframework.boot' version '3.4.4'
+	id 'io.spring.dependency-management' version '1.1.7'
+}
+
+group = 'com.example'
+version = '0.0.1-SNAPSHOT'
+
+java {
+    sourceCompatibility = JavaVersion.VERSION_17
+    targetCompatibility = JavaVersion.VERSION_17
+    toolchain {
+        languageVersion = JavaLanguageVersion.of(17)
+    }
+}
+
+configurations {
+	compileOnly {
+		extendsFrom annotationProcessor // Lombok용 설정
+	}
+}
+
+repositories {
+	mavenCentral() // 외부 라이브러리 받을 저장소
+}
+
+dependencies {
+	// ✅ 웹 기능 (컨트롤러 등) 사용
+	implementation 'org.springframework.boot:spring-boot-starter-web'
+	
+	// ✅ JPA (DB 연동)
+	implementation 'org.springframework.boot:spring-boot-starter-data-jpa'
+
+	// ✅ 인메모리 DB (개발/테스트용)
+	runtimeOnly 'com.h2database:h2'
+
+	// ✅ 롬복 (코드 자동 생성)
+	compileOnly 'org.projectlombok:lombok'
+	annotationProcessor 'org.projectlombok:lombok'
+
+	// ✅ 개발 편의 기능 (자동 재시작 등)
+	developmentOnly 'org.springframework.boot:spring-boot-devtools'
+
+	 // ✅ 스프링 시큐리티
+    implementation 'org.springframework.boot:spring-boot-starter-security'
+
+    // ✅ 비밀번호 암호화를 위한 BCrypt
+    implementation 'org.springframework.boot:spring-boot-starter-validation'
+
+	implementation 'org.springframework.boot:spring-boot-starter-webflux'
+
+	// ✅ JWT 관련 의존성
+    implementation 'io.jsonwebtoken:jjwt-api:0.11.5'
+    runtimeOnly 'io.jsonwebtoken:jjwt-impl:0.11.5'
+    runtimeOnly 'io.jsonwebtoken:jjwt-jackson:0.11.5'
+
+	 // ✅ MySQL JDBC 드라이버 추가
+    implementation 'mysql:mysql-connector-java:8.0.33'
+
+    // ✅ 테스트
+    testImplementation 'org.springframework.security:spring-security-test'
+
+	// ✅ 테스트용 라이브러리
+	testImplementation 'org.springframework.boot:spring-boot-starter-test'
+	testRuntimeOnly 'org.junit.platform:junit-platform-launcher'
+}
+
+tasks.named('test') {
+	useJUnitPlatform() // JUnit 5 사용 설정
+}
